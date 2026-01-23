@@ -19,7 +19,7 @@ const fetchCustomers = async () => {
   try {
     setLoading(true);
     // Change this URL:
-    const response = await fetch('http://localhost:5000/api/order/customers');
+    const response = await fetch('https://mobtick-backend.onrender.com/api/order/customers');
     const result = await response.json();
     
     if (result.success) {

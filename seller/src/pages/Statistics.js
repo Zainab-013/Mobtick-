@@ -19,7 +19,7 @@ function Statistics() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:5000/api/order/stats');
+      const response = await fetch('https://mobtick-backend.onrender.com/api/order/stats');
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

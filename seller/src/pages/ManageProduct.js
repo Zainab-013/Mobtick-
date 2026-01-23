@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // Backend API endpoint for products
-const API_BASE_URL = 'http://localhost:5000/api/products'; 
+const API_BASE_URL = 'https://mobtick-backend.onrender.com/api/products'; 
 
 const initialFormData = {
     description: '', brandName: '', topDeals: false, discount: '', 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 
 // 🚨 FIX: Define the base path for all authentication endpoints
-const AUTH_BASE_URL = "http://localhost:5000/api/auth";
+const AUTH_BASE_URL = "https://mobtick-backend.onrender.com/api/auth";
 
 const Login = () => {
     const [showShimmer, setShowShimmer] = useState(true);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE_URL = "http://localhost:5000/api/products"; 
+const API_BASE_URL = "https://mobtick-backend.onrender.com/api/products"; 
 
 function ViewProduct() {
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(true);
+const [darkMode] = useState(true);
   const [animateHeader, setAnimateHeader] = useState(false);
   const [animateMain, setAnimateMain] = useState(false);
   const [products, setProducts] = useState([]); 
