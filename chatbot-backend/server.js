@@ -17,12 +17,14 @@ const PORT = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",                 // local dev (optional)
-      "https://customer.vercel.app"    // ✅ CUSTOMER FRONTEND (ADD REAL URL HERE)
+      "https://customer-five-iota.vercel.app",
+      "http://localhost:3000"
     ],
     methods: ["GET", "POST"],
+    credentials: true
   })
 );
+
 
 app.use(express.json());
 
