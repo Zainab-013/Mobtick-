@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import mobticklogo from "../assets/mobticklogo.png";
 
+
 const Reviews = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [animateHeader, setAnimateHeader] = useState(false);
@@ -27,8 +28,9 @@ const Reviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        console.log("Calling API:", "http://localhost:5000/api/reviews");
-        const res = await fetch("http://localhost:5000/api/reviews");
+       console.log("Calling API:", "https://mobtick-backend.onrender.com/api/reviews");
+const res = await fetch("https://mobtick-backend.onrender.com/api/reviews");
+
         console.log("Response status:", res.status);
         const data = await res.json();
         setReviews(data);
@@ -48,11 +50,15 @@ const Reviews = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/reviews", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+     const res = await fetch(
+  "https://mobtick-backend.onrender.com/api/reviews",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(form),
+  }
+);
+
 
       const data = await res.json();
       if (res.ok) {

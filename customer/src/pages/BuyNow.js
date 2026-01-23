@@ -15,11 +15,15 @@ const CheckoutStripeForm = ({ amount, onSuccess, disabled }) => {
 
     try {
       // 1. Fetch clientSecret from backend
-      const response = await fetch("http://localhost:5000/api/create-payment-intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount }),
-      });
+      const response = await fetch(
+  "https://mobtick-backend.onrender.com/api/create-payment-intent",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount }),
+  }
+);
+
       const data = await response.json();
       if (!data.clientSecret) {
         alert("Payment initialization error.");
@@ -180,11 +184,15 @@ const BuyNow = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderPayload),
-      });
+      const res = await fetch(
+  "https://mobtick-backend.onrender.com/api/order",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(orderPayload),
+  }
+);
+
       const data = await res.json();
       if (data.ok) {
         // Clear purchased items from localStorage

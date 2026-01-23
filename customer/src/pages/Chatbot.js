@@ -41,10 +41,13 @@ const Chatbot = () => {
     setQuickReplies([]);
 
     try {
-      const response = await axios.post("http://localhost:5000/chat", {
-        message,
-        userId,
-      });
+      const response = await axios.post(
+  "https://mobtick-chatbot.onrender.com/chat",
+  {
+    message,
+    userId,
+  }
+);
 
       setTimeout(() => {
         const botMessage = { sender: "bot", text: response.data.reply };

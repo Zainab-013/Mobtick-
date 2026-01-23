@@ -5,8 +5,8 @@ import TrendingWatches from "../Components/TrendingWatches";
 import PublicReviews from "../Components/PublicReviews";
 import Footer from "../Components/Footer";
 
-const PRODUCTS_API = "http://localhost:5000/api/products";
-const REVIEWS_API = "http://localhost:5000/api/reviews/top?limit=3"; // ✅ Fetch top 3 reviews
+const PRODUCTS_API = "https://mobtick-backend.onrender.com/api/products";
+const REVIEWS_API = "https://mobtick-backend.onrender.com/api/reviews/top?limit=3";
 
 const CustomerHome = () => {
   const [deals, setDeals] = useState([]);
