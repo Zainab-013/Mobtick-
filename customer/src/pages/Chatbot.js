@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import mobticklogo from "../assets/mobticklogo.png";
-const CHATBOT_API = process.env.REACT_APP_CHATBOT_API;
-
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -23,7 +21,7 @@ const Chatbot = () => {
 
   useEffect(() => {
     localStorage.setItem("userId", userId);
-  }, [userId]); // ✅ fixed ESLint warning
+  }, [userId]);
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimateHeader(true), 100);
@@ -44,13 +42,12 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post(
-  `${CHATBOT_API}/chat`,
-  {
-    message,
-    userId,
-  }
-);
-
+        "https://mobtick-chatbot-backend.onrender.com/chat",
+        {
+          message,
+          userId,
+        }
+      );
 
       setTimeout(() => {
         const botMessage = { sender: "bot", text: response.data.reply };
@@ -75,9 +72,12 @@ const Chatbot = () => {
         scrollToBottom();
       }, 800);
     } catch (error) {
+      console.error("Chatbot API error:", error);
       setBotTyping(false);
-      const errorMessage = { sender: "bot", text: "❌ Could not reach server." };
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "❌ Could not reach chatbot server." },
+      ]);
       scrollToBottom();
     }
   };
@@ -147,7 +147,7 @@ const Chatbot = () => {
             ))}
 
             {botTyping && (
-              <div className="my-2 px-3 py-2 rounded-lg bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100 self-start animate-pulse max-w-[75%] rounded-bl-none shadow-sm">
+              <div className="my-2 px-3 py-2 rounded-lg bg-gray-300 dark:bg-gray-600 animate-pulse self-start">
                 Bot is typing...
               </div>
             )}
@@ -158,9 +158,7 @@ const Chatbot = () => {
                   <button
                     key={i}
                     onClick={() => sendMessage(reply)}
-                    className="px-3 py-1 rounded-md text-sm font-medium transition
-                               bg-gray-200 text-gray-900 hover:bg-gray-300
-                               dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
+                    className="px-3 py-1 rounded-md text-sm bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
                   >
                     {reply}
                   </button>
@@ -168,10 +166,10 @@ const Chatbot = () => {
               </div>
             )}
 
-            <div ref={chatEndRef}></div>
+            <div ref={chatEndRef} />
           </div>
 
-          {/* Input area */}
+          {/* Input */}
           <div className="flex">
             <input
               type="text"
@@ -179,17 +177,14 @@ const Chatbot = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Type your message..."
-              className="flex-1 p-2 rounded border border-gray-300 dark:border-gray-600 
-                         bg-white dark:bg-gray-700 text-black dark:text-white shadow-sm"
+              className="flex-1 p-2 rounded border dark:border-gray-600 bg-white dark:bg-gray-700"
             />
             <button
               onClick={() => {
                 sendMessage(input);
                 setInput("");
               }}
-              className="ml-2 px-4 py-2 rounded font-semibold transition
-                         bg-blue-600 text-white hover:bg-blue-700
-                         dark:bg-blue-500 dark:hover:bg-blue-600 shadow-sm"
+              className="ml-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
             >
               Send
             </button>
