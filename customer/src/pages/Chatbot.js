@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import mobticklogo from "../assets/mobticklogo.png";
+const CHATBOT_API = process.env.REACT_APP_CHATBOT_API;
+
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -42,12 +44,13 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post(
-  "https://mobtick-chatbot.onrender.com/chat",
+  `${CHATBOT_API}/chat`,
   {
     message,
     userId,
   }
 );
+
 
       setTimeout(() => {
         const botMessage = { sender: "bot", text: response.data.reply };
