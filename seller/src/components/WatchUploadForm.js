@@ -49,7 +49,7 @@ const ManageProduct = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/products', {
+      const res = await fetch('https://mobtick-backend.onrender.com/api/products', {
         method: 'POST',
         body: data, // Note: no 'Content-Type' header is needed with FormData
       });
